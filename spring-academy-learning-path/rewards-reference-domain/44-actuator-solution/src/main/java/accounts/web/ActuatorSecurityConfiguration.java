@@ -1,7 +1,5 @@
 package accounts.web;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.boot.actuate.autoconfigure.condition.ConditionsReportEndpoint;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
@@ -17,16 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class ActuatorSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        // TODO-23: Configure access control to actuator endpoints as following
-        // - Anybody can access "health" and "info" endpoints
-        // - ADMIN role can access "conditions" endpoint
-        // - ACTUATOR role can access all the other endpoints
 
         // @formatter:off
         http.authorizeHttpRequests((authz) -> authz

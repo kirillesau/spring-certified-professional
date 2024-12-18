@@ -1,5 +1,7 @@
 package rewards.internal;
 
+import common.money.MonetaryAmount;
+import org.springframework.transaction.annotation.Transactional;
 import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
@@ -10,8 +12,6 @@ import rewards.internal.restaurant.Restaurant;
 import rewards.internal.restaurant.RestaurantRepository;
 import rewards.internal.reward.RewardRepository;
 
-import common.money.MonetaryAmount;
-
 /**
  * Rewards an Account for Dining at a Restaurant.
  * <p>
@@ -21,7 +21,7 @@ import common.money.MonetaryAmount;
  * <p>
  * Said in other words, this class implements the "reward account for dining" use case.
  * <p>
- * TODO-00: In this lab, you are going to exercise the following:
+ * In this lab, you are going to exercise the following:
  * - Enabling Spring Transaction
  * - Adding transactional behavior to a method
  * - Exercising transaction propagation
@@ -49,12 +49,12 @@ public class RewardNetworkImpl implements RewardNetwork {
         this.rewardRepository = rewardRepository;
     }
 
-    // TODO-06: Modify the transactional attributes of the rewardAccountFor() method below.
+    // Modify the transactional attributes of the rewardAccountFor() method below.
     // Switch the propagation level to require a NEW transaction whenever invoked.
 
-    // TODO-01: Annotate this method as needing transactional behavior
+    // Annotate this method as needing transactional behavior
     // Make sure to use the annotation from Spring not from Java EE.
-
+    @Transactional
     public RewardConfirmation rewardAccountFor(Dining dining) {
         Account account = accountRepository.findByCreditCard(dining.getCreditCardNumber());
         Restaurant restaurant = restaurantRepository.findByMerchantNumber(dining.getMerchantNumber());

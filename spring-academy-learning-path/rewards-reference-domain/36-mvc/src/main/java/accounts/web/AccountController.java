@@ -2,6 +2,9 @@ package accounts.web;
 
 import accounts.AccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import rewards.internal.account.Account;
 
 import java.util.List;
@@ -16,8 +19,8 @@ import java.util.List;
  * -Service layer: AccountManager interface
  * -Repository layer: AccountRepository interface
  */
-// TODO-03: Add an appropriate annotation to make this class a REST controller
-
+// Add an appropriate annotation to make this class a REST controller
+@RestController
 public class AccountController {
 
     private final AccountManager accountManager;
@@ -33,23 +36,24 @@ public class AccountController {
     /**
      * Return a list of all accounts
      */
-    // TODO-04: Add an appropriate annotation to make this method handle "/accounts"
+    // Add an appropriate annotation to make this method handle "/accounts"
+    @GetMapping(path = "/accounts")
     public List<Account> accountList() {
 
-        // TODO-05: Implement the logic to find and return all accounts
+        // Implement the logic to find and return all accounts
         // - Use "accountManger" object to get all accounts
         // - Recompile this class if necessary, and wait for the application to restart (via devtools)
         // - From the home page, click the link - this should now work
         // - If you prefer, access http://localhost:8080/accounts using curl or Postman
 
-        return null; // REPLACE THIS LINE to return a list accounts
+        return accountManager.getAllAccounts(); // REPLACE THIS LINE to return a list accounts
 
-        // TODO-06: (If you are using STS) We are about to make lots of
+        // (If you are using STS) We are about to make lots of
         //          changes, so stop the application otherwise Devtools
         //          will keep restarting it.
     }
 
-    // TODO-08: Implement the /accounts/{entityId} request handling method.
+    // Implement the /accounts/{entityId} request handling method.
     // - Call the method accountDetails().
     // - Annotate to define URL mapping /accounts/{entityId}
     //   this method will respond to.
@@ -57,12 +61,15 @@ public class AccountController {
     //   needed to retrieve an account.
     // - Use the accountManager to obtain an account. This is the value to return
     // - Save all work.
+    @GetMapping(path = "/accounts/{entityId}")
+    public Account accountDetails(@PathVariable Long entityId) {
+        return accountManager.getAccount(entityId);
+    }
 
-
-    // TODO-10b: If AccountControllerTests.testHandleDetailsRequest()
+    // If AccountControllerTests.testHandleDetailsRequest()
     //  fails, fix errors before moving on
 
-    // TODO-11: Run the application
+    // Run the application
     // - You should now be able to invoke http://localhost:8080/accounts/N
     //   where N is 0-20 and get a response. You can use curl, Postman or
     //   your browser to do this.

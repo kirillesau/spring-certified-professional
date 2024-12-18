@@ -1,19 +1,15 @@
 package rewards.internal.account;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import common.money.MonetaryAmount;
 import common.money.Percentage;
+
+import javax.persistence.*;
 
 /**
  * A single beneficiary allocated to an account. Each beneficiary has a name (e.g. Annabelle) and a savings balance
  * tracking how much money has been saved for he or she to date (e.g. $1000).
  */
-//	TODO-04: Review the JPA annotations on this class and make sure you know what each does.
+// Review the JPA annotations on this class and make sure you know what each does.
 //	@AttributeOverride - Tells JPA to use the ALLOCATION_PERCENTAGE column on T_ACCOUNT_BENEFICIARY 
 //                       to populate Percentage.value.
 @Entity

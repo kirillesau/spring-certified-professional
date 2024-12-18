@@ -2,10 +2,8 @@ package rewards;
 
 import common.money.MonetaryAmount;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -15,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * successfully. Uses Spring to bootstrap the application for use in a test environment.
  */
 
-// TODO-09: Refactor this test code
+// Refactor this test code
 // - Run this test without making any change, it will fail - think about why it fails
 // - Replace the @ExtendWith and @ContextConfiguration annotations below with @SpringBootTest
 //   (There is no need to specify any configuration classes,
@@ -23,8 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //    of RewardApplication automatically.)
 // - Run the test, it should now pass.
 // - Think about where auto-configuration is enabled for the test.
-@ExtendWith(SpringExtension.class)                      // Replace me
-@ContextConfiguration(classes = {SystemTestConfig.class}) // Replace me
+@SpringBootTest
 public class RewardNetworkTests {
 
     /**

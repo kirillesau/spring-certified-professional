@@ -5,6 +5,12 @@
 Definition
 : Java Framework (als Modulbaukasten), dass zum Bauen von Anwendungen genutzt wird.
 
+- Ist Open Source
+- Leichtgewichtig
+- Besitzt einen DI Container (Inversion of Control Container)
+- Apache 2 Lizenz
+- Spring Jars sind klein und können in einer JRE laufen
+
 ### Nachteil
 
 1. Aufsetzen einer Spring-Anwendung erfordert viele Konfigurationen. Damit eine Anwendung läuft, müssen einige
@@ -83,6 +89,94 @@ Beispiel:
 `@RestController` veranlasst Spring in der `Component Scan phase` (Während des Start-ups) die Instanziierung der Klasse.
 Ab dort wird die Bean im `Spring IoC container` gespeichert und kann von anderen Klassen durch ein `inject` genutzt
 werden.
+
+- Herzstück von Spring
+- Die Kernprinzipien von Spring sind:
+    - Dont repeat yourself
+  - Separation of Concerns
+  - Conversion over Configuration
+      - Testbarkeit
+- Singleton ist default Scope. Andere Scopes:
+    - prototype
+    - session
+    - request
+    - web socket scope
+    - refresh scope
+    - thread scope
+
+### Beispiele
+
+```java
+
+ApplicationContext context = SpringApplication.run(ApplicationConfig.class);
+MyService m1 = (MyService) context.getBean("myService");
+MyService m2 = context.getBean("myService", MyService.class);
+MyService m3 = (MyService) context.getBean(MyService.class);
+
+```
+
+## Properties laden
+
+Mehrere Möglichkeiten:
+
+```Java
+
+@Configuration
+@PropertySource("classpath:/com/package/app.properties")
+@PropertySource("file:/config/app.properties") // Relativ oder absoluter Pfad
+public class MyConfig {
+}
+```
+
+```Java
+
+@Configuration
+public class MyConfig {
+
+    @Bean
+    public MyBean myBean(@Value("${my.prop}") String myProp) {
+        // ...
+    }
+}
+```
+
+- Kann auch mit Profilen kombiniert werden
+
+## Profiles
+
+Kann aktiviert werden durch folgende Property: `-Dspring.profiles.active=meinProfil1,meinProfil2`
+
+```Java
+
+@Configuration
+@Profile("meinProfil") // Aktiv, wenn meinProfil eingestellt ist
+public class MyConfig {
+}
+```
+
+```Java
+
+@Configuration
+@Profile("!meinProfil") // Aktiv, wenn meinProfil nicht eingestellt ist
+public class MyConfig {
+}
+```
+
+## Spring Expression Language (SpEL)
+
+`systemProperties` wird von der Umgebung bereitgestellt.
+
+Beispiel:
+
+```Java
+
+@Configuration
+public class MyConfig {
+    // Kann auch auf dem Argument-Level verwendet werden
+    @Value("#{systemProperties['user.region']}")
+    String region;
+}
+```
 
 ## Glossar
 

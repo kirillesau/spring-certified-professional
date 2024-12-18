@@ -1,11 +1,8 @@
 package rewards.internal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import common.money.MonetaryAmount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import rewards.AccountContribution;
 import rewards.Dining;
 import rewards.RewardConfirmation;
@@ -13,7 +10,8 @@ import rewards.internal.account.AccountRepository;
 import rewards.internal.restaurant.RestaurantRepository;
 import rewards.internal.reward.RewardRepository;
 
-import common.money.MonetaryAmount;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit tests for the RewardNetworkImpl application logic. Configures the implementation with stub repositories
@@ -22,7 +20,6 @@ import common.money.MonetaryAmount;
  * Besides helping catch bugs early, tests are a great way for a new developer to learn an API as he or she can see the
  * API in action. Tests also help validate a design as they are a measure for how easy it is to use your code.
  */
-
 public class RewardNetworkImplTests {
 
     /**

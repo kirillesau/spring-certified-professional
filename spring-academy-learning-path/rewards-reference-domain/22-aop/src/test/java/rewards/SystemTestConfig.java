@@ -1,22 +1,23 @@
 package rewards;
 
-import javax.sql.DataSource;
-
+import config.AspectsConfig;
+import config.RewardsConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import rewards.internal.aspects.DBExceptionHandlingAspect;
 
-import config.RewardsConfig;
+import javax.sql.DataSource;
 
 
 /**
- * TODO-05: Make this configuration include the aspect configuration.
+ * Make this configuration include the aspect configuration.
  * Save all your work, run the LoggingAspectTests.  It should pass,
  * and you should see one line of LoggingAspect output in the console.
  */
 @Configuration
-@Import({RewardsConfig.class})
+@Import({RewardsConfig.class, AspectsConfig.class, DBExceptionHandlingAspect.class})
 public class SystemTestConfig {
 
 
