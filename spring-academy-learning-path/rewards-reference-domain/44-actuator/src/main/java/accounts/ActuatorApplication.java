@@ -1,14 +1,13 @@
 package accounts;
 
+import config.AppConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Import;
 
-import config.AppConfig;
-
 /**
- * TODO-00: In this lab, you are going to exercise the following:
+ * In this lab, you are going to exercise the following:
  * - Exposing and accessing various actuator endpoints
  * - Changing logging level of a package by sending post request to "loggers" endpoint
  * - Publishing build information via "info" endpoint
@@ -18,20 +17,20 @@ import config.AppConfig;
  * - Configuring security against actuator endpoints
  * - Using AOP for counter operation (optional step)
  * <p>
- * TODO-01: Note that the Actuator starter is already set up for you.
+ * Note that the Actuator starter is already set up for you.
  *          (Look for TO-DO-01 in the pom.xml or build.gradle)
  * <p>
- * TODO-02: Run this application. Try these URLs:
+ * Run this application. Try these URLs:
  * - http://localhost:8080/actuator - should work
  * - http://localhost:8080/actuator/metrics - fails (404), why?
  * <p>
- * TODO-03: Expose some endpoints
+ *  Expose some endpoints
  *          (Look for TO-DO-03 in application.properties)
  * <p>
- * TODO-04: Expose all endpoints
+ * Expose all endpoints
  *          (Look for TO-DO-04 in application.properties)
  * <p>
- * TODO-05: Change log level via ./actuator/loggers endpoint
+ * Change log level via ./actuator/loggers endpoint
  * - Verify the current logging level of the "accounts.web" package is DEBUG
  *   (Access localhost:8080/actuator/loggers/accounts.web)
  * - Add "logger.debug("Logging message within accountSummary()");" inside
@@ -46,7 +45,7 @@ import config.AppConfig;
  * - Access "/accounts" URL (WITHOUT restarting the application) and verify
  *   the logging message no longer gets displayed
  * <p>
- * TODO-06: Publish build information
+ * Publish build information
  * - Add an appropriate plugin to pom.xml (for Maven) or BuildInfo task to
  *   build.gradle (for Gradle)
  * - Rebuild the application preferably at the command line
@@ -58,20 +57,20 @@ import config.AppConfig;
  * - Restart the application and access "info" endpoint and verify the build
  *   info gets displayed
  * <p>
- * TODO-07 (Optional): Add additional properties to the info endpoint
+ * Add additional properties to the info endpoint
  * <p>
  * <p>
  * ------------------------------------------------
  * <p>
- * TODO-14: Look for TO-DO-14 in application.properties
+ * Look for TO-DO-14 in application.properties
  * <p>
  * ------------------------------------------------
  * <p>
- * TODO-17: Verify the behavior of custom health indicator
+ * Verify the behavior of custom health indicator
  * - Let the application to restart (via devtools)
  * - Access the health indicator - it should be DOWN as there are no restaurants.
  * <p>
- * TODO-18: Verify the behavior of custom health indicator with change
+ * Verify the behavior of custom health indicator with change
  * - Modify the `spring.sql.init.data-locations` property in the application.properties
  *   to use `data-with-restaurants.sql`
  * - Let the application to restart (via devtools)
@@ -79,7 +78,7 @@ import config.AppConfig;
  * <p>
  * ------------------------------------------------
  * <p>
- * TODO-20: Look for "TO-DO-20: Organize health indicators into groups"
+ * Look for "TO-DO-20: Organize health indicators into groups"
  *          in the application.properties
  */
 @SpringBootApplication

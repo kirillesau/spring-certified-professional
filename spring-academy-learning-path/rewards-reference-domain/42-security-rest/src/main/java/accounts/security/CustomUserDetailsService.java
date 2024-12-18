@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 //Optional exercise - Do the remaining steps only if you have extra time
-//TODO-13 (Optional): Create custom UserDetailsService
+//Create custom UserDetailsService
 //- Note that it needs to implement loadUserByUsername method
 //of the UserDetailsService interface
 //- Uncomment the commented code fragment below so that this custom
@@ -16,12 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //- "mary"/"mary" with "USER" role and
 //- "joe"/"joe" with "USER" and "ADMIN" roles
 
-//TODO-14a (Optional): Add authentication based upon the custom UserDetailsService
+// Add authentication based upon the custom UserDetailsService
 //- Annotate the class with @Component to make it a Spring manager bean
 
-//TODO-18b (Optional): Remove the CustomUserDetailsService definition
+//Remove the CustomUserDetailsService definition
 // - Comment the @Component annotation added in a previous task
-
+//@Component
 @Primary
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -34,18 +34,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User.UserBuilder builder = User.builder();
-//     builder.username(username);
-//     builder.password(passwordEncoder.encode(username));
-//     switch (username) {
-//         case "mary":
-//             builder.roles("USER");
-//             break;
-//         case "joe":
-//             builder.roles("USER", "ADMIN");
-//             break;
-//         default:
-//             throw new UsernameNotFoundException("User not found.");
-//     }
+        builder.username(username);
+        builder.password(passwordEncoder.encode(username));
+        switch (username) {
+            case "mary":
+                builder.roles("USER");
+                break;
+            case "joe":
+                builder.roles("USER", "ADMIN");
+                break;
+            default:
+                throw new UsernameNotFoundException("User not found.");
+        }
 
         return builder.build();
     }

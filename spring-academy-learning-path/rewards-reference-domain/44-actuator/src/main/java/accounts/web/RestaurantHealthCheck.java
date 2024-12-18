@@ -1,16 +1,35 @@
 package accounts.web;
 
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
+import rewards.internal.restaurant.RestaurantRepository;
+
 /**
- * TODO-16a: Create custom health indicator
+ * Create custom health indicator
  * - Make this class implement HealthIndicator interface
  * - Make this class a component
  * - Inject RestaurantRepository through constructor injection
  * - health() method should return DOWN if the repository is empty
- *   (no restaurants) or UP otherwise. (Note that RestaurantRepository
- *   has a method that returns number of restaurants.)
+ * (no restaurants) or UP otherwise. (Note that RestaurantRepository
+ * has a method that returns number of restaurants.)
  */
-public class RestaurantHealthCheck {
+@Component
+public class RestaurantHealthCheck implements HealthIndicator {
+    private final RestaurantRepository restaurantRepository;
 
+    public RestaurantHealthCheck(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
+
+    @Override
+    public Health health() {
+        if (restaurantRepository.getRestaurantCount() > 0) {
+            return Health.up().build();
+        } else {
+            return Health.down().build();
+        }
+    }
 }
 
 
